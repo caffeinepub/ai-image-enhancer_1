@@ -1,0 +1,197 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Enhanced Photo Editing: Remove Blur, Upscale Resolution & Add Editing Tools",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Remove any blur CSS/canvas filters currently applied to the enhanced image display in the ImageComparison component so that enhanced images are shown sharp and clean.",
+      "acceptanceCriteria": [
+        "No CSS blur filter or canvas blur is applied to the enhanced image output",
+        "The enhanced image appears sharp and unprocessed in the comparison view"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageComparison.tsx",
+          "operation": "modify",
+          "description": "Remove any blur CSS filters or canvas blur operations from the enhanced image rendering. Ensure the enhanced image is displayed with no visual filters that reduce sharpness."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement canvas-based resolution upscaling simulation on the enhanced image using multi-step canvas upscaling and unsharp mask sharpening kernel to make the output appear crisper and higher-resolution without any external API.",
+      "acceptanceCriteria": [
+        "Enhanced image is upscaled via canvas to at least 2x its original pixel dimensions",
+        "Sharpening convolution kernel is applied post-upscale to reduce blurriness artifacts",
+        "Resulting image looks visibly crisper than the raw upload"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/imageProcessing.ts",
+          "operation": "create",
+          "description": "Create a utility module that exports canvas-based upscaling functions: multi-step incremental upscaling (e.g., 1.5x then 1.33x to reach 2x) and a convolution sharpening kernel function that applies an unsharp mask to ImageData. Include helper functions for getImageData, putImageData, and convolution matrix application."
+        },
+        {
+          "path": "frontend/src/components/ImageComparison.tsx",
+          "operation": "modify",
+          "description": "Apply the upscaling and sharpening functions from frontend/src/utils/imageProcessing.ts to the enhanced image immediately after it is received. Render the upscaled, sharpened result into the comparison view instead of the raw enhanced image."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add a brightness slider and a contrast slider to the enhanced image editing panel that update the canvas-rendered enhanced image in real time using CSS filter or canvas pixel manipulation.",
+      "acceptanceCriteria": [
+        "Brightness slider ranges from -100 to +100 with 0 as default",
+        "Contrast slider ranges from -100 to +100 with 0 as default",
+        "Moving either slider immediately updates the displayed enhanced image"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageEnhancementControls.tsx",
+          "operation": "create",
+          "description": "Create a new editing controls component that renders brightness and contrast sliders with ranges from -100 to +100 (default 0). Store slider values in state and expose an onChange callback that passes the current brightness and contrast values to the parent component. Style the component consistently with the amber/charcoal PixelBoost theme."
+        },
+        {
+          "path": "frontend/src/utils/imageProcessing.ts",
+          "operation": "modify",
+          "description": "Add functions to apply brightness and contrast adjustments to canvas ImageData using pixel manipulation. Brightness should shift RGB values by a linear offset; contrast should scale RGB values around a midpoint. Export these as reusable utility functions."
+        },
+        {
+          "path": "frontend/src/components/ImageComparison.tsx",
+          "operation": "modify",
+          "description": "Integrate the ImageEnhancementControls component into the ImageComparison layout, placing it below or alongside the enhanced image. Wire the brightness and contrast slider values to re-render the enhanced image canvas with the adjustments applied in real time using the utility functions from frontend/src/utils/imageProcessing.ts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a saturation / color boost slider to the enhanced image editing panel that adjusts color saturation in real time using canvas pixel manipulation or CSS filter.",
+      "acceptanceCriteria": [
+        "Saturation slider ranges from 0 (grayscale) to 200 (double saturation) with 100 as default",
+        "Moving the slider immediately updates the displayed enhanced image"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageEnhancementControls.tsx",
+          "operation": "modify",
+          "description": "Add a saturation slider to the editing controls with a range from 0 to 200 (default 100). Store the saturation value in state and pass it to the parent onChange callback alongside brightness and contrast."
+        },
+        {
+          "path": "frontend/src/utils/imageProcessing.ts",
+          "operation": "modify",
+          "description": "Add a saturation adjustment function that converts RGB pixels to HSL, scales the saturation channel by the given percentage (0–200), and converts back to RGB. Export this function for use in the ImageComparison component."
+        },
+        {
+          "path": "frontend/src/components/ImageComparison.tsx",
+          "operation": "modify",
+          "description": "Wire the saturation slider value into the canvas rendering pipeline so that saturation adjustments are applied in real time alongside brightness and contrast using the utility function from frontend/src/utils/imageProcessing.ts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add a sharpening filter control (e.g., a toggle or intensity slider) to the enhanced image editing panel that applies a convolution sharpening kernel via canvas ImageData to increase perceived edge sharpness.",
+      "acceptanceCriteria": [
+        "User can toggle or adjust sharpening intensity",
+        "At maximum sharpening, edges in the enhanced image are visibly more defined"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageEnhancementControls.tsx",
+          "operation": "modify",
+          "description": "Add a sharpening intensity slider (range 0 to 100, default 0) to the editing controls. Pass the sharpening value to the parent onChange callback."
+        },
+        {
+          "path": "frontend/src/utils/imageProcessing.ts",
+          "operation": "modify",
+          "description": "Add or enhance the convolution sharpening function to accept an intensity parameter (0–100) that scales the sharpening kernel effect. Ensure the function can be applied incrementally for real-time previews."
+        },
+        {
+          "path": "frontend/src/components/ImageComparison.tsx",
+          "operation": "modify",
+          "description": "Wire the sharpening intensity slider into the canvas rendering pipeline so that sharpening is applied in real time alongside other adjustments using the utility function from frontend/src/utils/imageProcessing.ts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add a noise reduction effect toggle or slider to the enhanced image editing panel that implements a simple box blur or median-style smoothing pass on the canvas pixel data to reduce visible noise/grain.",
+      "acceptanceCriteria": [
+        "Noise reduction control is visible in the editing panel",
+        "Enabling noise reduction visibly smooths grain in the enhanced image"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageEnhancementControls.tsx",
+          "operation": "modify",
+          "description": "Add a noise reduction slider (range 0 to 100, default 0) to the editing controls. Pass the noise reduction value to the parent onChange callback."
+        },
+        {
+          "path": "frontend/src/utils/imageProcessing.ts",
+          "operation": "modify",
+          "description": "Add a noise reduction function that applies a box blur or median filter to canvas ImageData, with intensity controlled by a 0–100 parameter. Export this function for use in the ImageComparison component."
+        },
+        {
+          "path": "frontend/src/components/ImageComparison.tsx",
+          "operation": "modify",
+          "description": "Wire the noise reduction slider into the canvas rendering pipeline so that noise reduction is applied in real time alongside other adjustments using the utility function from frontend/src/utils/imageProcessing.ts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add crop and rotate tools to the enhanced image editing panel. Crop should allow the user to drag a selection rectangle over the image and confirm to crop. Rotate should provide 90-degree clockwise/counter-clockwise buttons and a free-rotation slider. All operations should be performed on the canvas.",
+      "acceptanceCriteria": [
+        "User can draw a crop region on the enhanced image and confirm to apply the crop",
+        "90-degree clockwise and counter-clockwise rotation buttons are present and functional",
+        "A free-rotation slider (e.g., -45 to +45 degrees) rotates the canvas-rendered image in real time",
+        "Download button exports the final cropped/rotated/adjusted image"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageEnhancementControls.tsx",
+          "operation": "modify",
+          "description": "Add crop and rotate controls to the editing panel: a 'Crop' button that enables crop mode, 90-degree clockwise/counter-clockwise rotation buttons, and a free-rotation slider (range -45 to +45 degrees, default 0). Pass crop/rotate state and callbacks to the parent component."
+        },
+        {
+          "path": "frontend/src/hooks/useCropSelection.ts",
+          "operation": "create",
+          "description": "Create a custom hook that manages crop selection state, including the drag-to-select rectangle bounds, mouse/touch event handlers for drawing the selection on a canvas overlay, and a confirm function that returns the crop region coordinates."
+        },
+        {
+          "path": "frontend/src/utils/imageProcessing.ts",
+          "operation": "modify",
+          "description": "Add canvas-based crop and rotate functions: a crop function that extracts a sub-region of ImageData, and rotate functions that apply 90-degree and arbitrary angle rotations by drawing the image onto a rotated canvas context. Export these functions."
+        },
+        {
+          "path": "frontend/src/components/ImageComparison.tsx",
+          "operation": "modify",
+          "description": "Integrate crop and rotate functionality into the ImageComparison component using the useCropSelection hook and utility functions from frontend/src/utils/imageProcessing.ts. When crop mode is active, overlay a drag-to-select UI on the enhanced image canvas. Apply rotation transformations in real time based on the free-rotation slider and 90-degree button clicks. Update the download button to export the final cropped/rotated/adjusted image from the canvas."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Consolidate all enhancement controls (upscaling, brightness, contrast, saturation, sharpening, noise reduction, crop, rotate) into a cohesive editing panel displayed below or alongside the enhanced image in the ImageComparison component. Include a 'Reset' button to restore all sliders and tools to their defaults.",
+      "acceptanceCriteria": [
+        "All editing controls are grouped in a single clearly labeled panel",
+        "Reset button restores all controls to default values and re-renders the original enhanced image",
+        "Panel is styled consistently with the existing PixelBoost amber/charcoal design theme"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageEnhancementControls.tsx",
+          "operation": "modify",
+          "description": "Ensure all controls (brightness, contrast, saturation, sharpening, noise reduction, crop, rotate) are organized into labeled sections within a single cohesive panel. Add a 'Reset' button that resets all slider and tool values to their defaults and triggers a parent callback to re-render the original enhanced image. Apply consistent amber/charcoal styling using Tailwind classes and PixelBoost theme tokens from frontend/tailwind.config.js."
+        },
+        {
+          "path": "frontend/src/components/ImageComparison.tsx",
+          "operation": "modify",
+          "description": "Position the consolidated ImageEnhancementControls panel below or alongside the enhanced image in a responsive layout. Wire the Reset button to clear all applied adjustments and re-render the original upscaled enhanced image. Ensure the panel layout is consistent with the existing PixelBoost design theme."
+        }
+      ]
+    }
+  ]
+}

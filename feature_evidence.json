@@ -1,0 +1,170 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-remove-any-blur-css-canvas-filters-currently-applied-to-the-enhanced-image-display-in-the-imagecomparison-component-so-that-enhanced-images-are-shown-sharp-and-clean",
+      "featureTitle": "Remove any blur CSS/canvas filters currently applied to the enhanced image display in the ImageComparison component so that enhanced images are shown sharp and clean.",
+      "files": [
+        "frontend/src/components/ImageComparison.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-canvas-based-resolution-upscaling-simulation-on-the-enhanced-image-use-multi-step-canvas-upscaling-draw-to-a-larger-canvas-in-incremental-steps-combined-with-an-unsharp-mask-convolution-sharpening-kernel-to-make-the-output-image-appear-crisper-and-higher-resolution-without-any-external-api",
+      "featureTitle": "Implement canvas-based resolution upscaling simulation on the enhanced image. Use multi-step canvas upscaling (draw to a larger canvas in incremental steps) combined with an unsharp mask / convolution sharpening kernel to make the output image appear crisper and higher-resolution without any external API.",
+      "files": [
+        "frontend/src/components/ImageComparison.tsx",
+        "frontend/src/utils/imageProcessing.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-brightness-slider-and-a-contrast-slider-to-the-enhanced-image-editing-panel-these-sliders-should-update-the-canvas-rendered-enhanced-image-in-real-time-using-css-filter-or-canvas-pixel-manipulation",
+      "featureTitle": "Add a brightness slider and a contrast slider to the enhanced image editing panel. These sliders should update the canvas-rendered enhanced image in real time using CSS filter or canvas pixel manipulation.",
+      "files": [
+        "frontend/src/components/ImageComparison.tsx",
+        "frontend/src/components/ImageEnhancementControls.tsx",
+        "frontend/src/utils/imageProcessing.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-saturation-color-boost-slider-to-the-enhanced-image-editing-panel-the-slider-should-adjust-color-saturation-in-real-time-using-canvas-pixel-manipulation-or-css-filter",
+      "featureTitle": "Add a saturation / color boost slider to the enhanced image editing panel. The slider should adjust color saturation in real time using canvas pixel manipulation or CSS filter.",
+      "files": [
+        "frontend/src/components/ImageComparison.tsx",
+        "frontend/src/components/ImageEnhancementControls.tsx",
+        "frontend/src/utils/imageProcessing.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-sharpening-filter-control-e-g-a-toggle-or-intensity-slider-to-the-enhanced-image-editing-panel-apply-a-convolution-sharpening-kernel-via-canvas-imagedata-to-increase-perceived-edge-sharpness",
+      "featureTitle": "Add a sharpening filter control (e.g., a toggle or intensity slider) to the enhanced image editing panel. Apply a convolution sharpening kernel via canvas ImageData to increase perceived edge sharpness.",
+      "files": [
+        "frontend/src/components/ImageComparison.tsx",
+        "frontend/src/components/ImageEnhancementControls.tsx",
+        "frontend/src/utils/imageProcessing.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-noise-reduction-effect-toggle-or-slider-to-the-enhanced-image-editing-panel-implement-a-simple-box-blur-or-median-style-smoothing-pass-on-the-canvas-pixel-data-to-reduce-visible-noise-grain",
+      "featureTitle": "Add a noise reduction effect toggle or slider to the enhanced image editing panel. Implement a simple box blur or median-style smoothing pass on the canvas pixel data to reduce visible noise/grain.",
+      "files": [
+        "frontend/src/components/ImageComparison.tsx",
+        "frontend/src/components/ImageEnhancementControls.tsx",
+        "frontend/src/utils/imageProcessing.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-crop-and-rotate-tools-to-the-enhanced-image-editing-panel-crop-should-allow-the-user-to-drag-a-selection-rectangle-over-the-image-and-confirm-to-crop-rotate-should-provide-90-degree-clockwise-counter-clockwise-buttons-and-a-free-rotation-slider-all-operations-should-be-performed-on-the-canvas",
+      "featureTitle": "Add crop and rotate tools to the enhanced image editing panel. Crop should allow the user to drag a selection rectangle over the image and confirm to crop. Rotate should provide 90-degree clockwise/counter-clockwise buttons and a free-rotation slider. All operations should be performed on the canvas.",
+      "files": [
+        "frontend/src/components/ImageComparison.tsx",
+        "frontend/src/components/ImageEnhancementControls.tsx",
+        "frontend/src/hooks/useCropSelection.ts",
+        "frontend/src/utils/imageProcessing.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-consolidate-all-enhancement-controls-upscaling-brightness-contrast-saturation-sharpening-noise-reduction-crop-rotate-into-a-cohesive-editing-panel-displayed-below-or-alongside-the-enhanced-image-in-the-imagecomparison-component-include-a-reset-button-to-restore-all-sliders-and-tools-to-their-defaults",
+      "featureTitle": "Consolidate all enhancement controls (upscaling, brightness, contrast, saturation, sharpening, noise reduction, crop, rotate) into a cohesive editing panel displayed below or alongside the enhanced image in the ImageComparison component. Include a 'Reset' button to restore all sliders and tools to their defaults.",
+      "files": [
+        "frontend/src/components/ImageComparison.tsx",
+        "frontend/src/components/ImageEnhancementControls.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

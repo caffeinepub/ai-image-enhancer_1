@@ -1,0 +1,143 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-27T04:41:25.355Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 8,
+    "implemented": 8,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Remove any blur CSS/canvas filters currently applied to the enhanced image display in the ImageComparison component so that enhanced images are shown sharp and clean.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ImageComparison.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ImageComparison.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement canvas-based resolution upscaling simulation on the enhanced image. Use multi-step canvas upscaling (draw to a larger canvas in incremental steps) combined with an unsharp mask / convolution sharpening kernel to make the output image appear crisper and higher-resolution without any external API.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Add a brightness slider and a contrast slider to the enhanced image editing panel. These sliders should update the canvas-rendered enhanced image in real time using CSS filter or canvas pixel manipulation.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Add a saturation / color boost slider to the enhanced image editing panel. The slider should adjust color saturation in real time using canvas pixel manipulation or CSS filter.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Add a sharpening filter control (e.g., a toggle or intensity slider) to the enhanced image editing panel. Apply a convolution sharpening kernel via canvas ImageData to increase perceived edge sharpness.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Add a noise reduction effect toggle or slider to the enhanced image editing panel. Implement a simple box blur or median-style smoothing pass on the canvas pixel data to reduce visible noise/grain.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Add crop and rotate tools to the enhanced image editing panel. Crop should allow the user to drag a selection rectangle over the image and confirm to crop. Rotate should provide 90-degree clockwise/counter-clockwise buttons and a free-rotation slider. All operations should be performed on the canvas.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/hooks/useCropSelection.ts",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/hooks/useCropSelection.ts",
+          "frontend/src/utils/imageProcessing.ts",
+          "frontend/src/components/ImageComparison.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Consolidate all enhancement controls (upscaling, brightness, contrast, saturation, sharpening, noise reduction, crop, rotate) into a cohesive editing panel displayed below or alongside the enhanced image in the ImageComparison component. Include a 'Reset' button to restore all sliders and tools to their defaults.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/components/ImageComparison.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ImageEnhancementControls.tsx",
+          "frontend/src/components/ImageComparison.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/ImageComparison.tsx",
+    "frontend/src/components/ImageEnhancementControls.tsx",
+    "frontend/src/hooks/useCropSelection.ts",
+    "frontend/src/utils/imageProcessing.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

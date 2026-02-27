@@ -1,0 +1,21 @@
+{
+  "backend/main.mo": "Motoko actor that manages chunked image uploads via session tracking, assembles chunks, applies a placeholder enhancement, stores images by ID, and exposes query methods to retrieve images and their IDs.",
+  "feature_evidence.json": "JSON report mapping feature IDs to their titles, associated source files, component dependencies, and test IDs for features like blur removal, canvas upscaling, and image adjustment sliders.",
+  "frontend-file-summaries.txt": "A JSON document containing one-to-two sentence summaries of each frontend source file, serving as a quick reference for the purpose and key details of each module.",
+  "frontend/index.css": "Tailwind base CSS file defining OKLCH-based CSS custom properties for light and dark color themes including background, foreground, chart, and sidebar tokens.",
+  "frontend/index.html": "Minimal HTML entry point that mounts the React app into a root div and loads the main TypeScript module.",
+  "frontend/src/App.tsx": "Root React component implementing an upload/processing/done/error state machine, storing raw file bytes for chunked upload, and orchestrating the image enhancement flow with progress tracking and mode selection.",
+  "frontend/src/components/HeroBanner.tsx": "Presentational hero banner component displaying a background image with gradient overlays, the app logo, and amber-styled PixelBoost branding and tagline.",
+  "frontend/src/components/ImageComparison.tsx": "Side-by-side image comparison component that upscales the enhanced image via canvas, applies real-time adjustments (brightness, contrast, saturation, sharpness, crop, rotation), and renders a crop overlay UI with the ImageEnhancementControls panel.",
+  "frontend/src/components/ImageEnhancementControls.tsx": "React component that renders a panel of image enhancement sliders (brightness, contrast, saturation, sharpness, noise reduction, rotation) plus crop and download action buttons, with reset functionality.",
+  "frontend/src/components/ImageUploader.tsx": "React component providing a drag-and-drop or click-to-browse file upload zone for JPEG/PNG images, with preview display, validation, and reset capability.",
+  "frontend/src/hooks/useActor.ts": "Custom hook that creates and caches an ICP backend actor (authenticated or anonymous) using React Query, and invalidates dependent queries whenever the actor changes.",
+  "frontend/src/hooks/useCropSelection.ts": "Custom hook managing interactive crop-rectangle selection on a canvas overlay, handling mouse events and scaling between display pixels and natural image pixels.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides an Internet Identity authentication context and provider, wrapping DFINITY's AuthClient to expose login, logout, identity state, and status flags to React components.",
+  "frontend/src/hooks/useQueries.ts": "Custom hook exposing a React Query mutation that uploads an image to the ICP backend in chunked segments, triggers enhancement, and returns a blob URL of the enhanced result with progress reporting.",
+  "frontend/src/index.css": "Global CSS file that imports Inter and Space Grotesk fonts, sets up Tailwind directives, and defines a dark charcoal/amber OKLCH color theme with custom utility classes for glows, gradients, and animations.",
+  "frontend/src/main.tsx": "React app entry point that wraps the App component with QueryClientProvider and InternetIdentityProvider before mounting to the DOM.",
+  "frontend/src/utils/imageProcessing.ts": "Canvas-based image processing utilities providing functions for upscaling, convolution kernels, brightness/contrast, saturation, sharpening, noise reduction, and crop/rotate operations on ImageData pixel arrays.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration extending the theme with OKLCH-based color tokens (amber, charcoal, sidebar), custom fonts, border radii, and plugins for typography, container queries, and animations.",
+  "project_state.json": "Project state manifest tracking the app's version, summary, architectural notes, and a list of implemented features for a client-side photo enhancement app with canvas-based editing tools."
+}

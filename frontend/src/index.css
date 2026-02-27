@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+
+        /* Dark charcoal theme as default */
+        --background: 0.13 0.005 260;
+        --foreground: 0.93 0.01 80;
+        --card: 0.17 0.006 260;
+        --card-foreground: 0.93 0.01 80;
+        --popover: 0.2 0.007 260;
+        --popover-foreground: 0.93 0.01 80;
+        --primary: 0.78 0.16 75;
+        --primary-foreground: 0.12 0.005 260;
+        --secondary: 0.22 0.008 260;
+        --secondary-foreground: 0.85 0.01 80;
+        --muted: 0.22 0.008 260;
+        --muted-foreground: 0.58 0.01 260;
+        --accent: 0.78 0.16 75;
+        --accent-foreground: 0.12 0.005 260;
+        --destructive: 0.62 0.22 25;
+        --destructive-foreground: 0.98 0 0;
+        --border: 0.28 0.01 260;
+        --input: 0.25 0.01 260;
+        --ring: 0.78 0.16 75;
+        --chart-1: 0.78 0.16 75;
+        --chart-2: 0.65 0.18 55;
+        --chart-3: 0.55 0.14 200;
+        --chart-4: 0.7 0.2 40;
+        --chart-5: 0.6 0.15 300;
+        --sidebar: 0.15 0.006 260;
+        --sidebar-foreground: 0.93 0.01 80;
+        --sidebar-primary: 0.78 0.16 75;
+        --sidebar-primary-foreground: 0.12 0.005 260;
+        --sidebar-accent: 0.22 0.008 260;
+        --sidebar-accent-foreground: 0.85 0.01 80;
+        --sidebar-border: 0.28 0.01 260;
+        --sidebar-ring: 0.78 0.16 75;
+    }
+
+    .dark {
+        --background: 0.13 0.005 260;
+        --foreground: 0.93 0.01 80;
+        --card: 0.17 0.006 260;
+        --card-foreground: 0.93 0.01 80;
+        --popover: 0.2 0.007 260;
+        --popover-foreground: 0.93 0.01 80;
+        --primary: 0.78 0.16 75;
+        --primary-foreground: 0.12 0.005 260;
+        --secondary: 0.22 0.008 260;
+        --secondary-foreground: 0.85 0.01 80;
+        --muted: 0.22 0.008 260;
+        --muted-foreground: 0.58 0.01 260;
+        --accent: 0.78 0.16 75;
+        --accent-foreground: 0.12 0.005 260;
+        --destructive: 0.62 0.22 25;
+        --destructive-foreground: 0.98 0 0;
+        --border: 0.28 0.01 260;
+        --input: 0.25 0.01 260;
+        --ring: 0.78 0.16 75;
+        --chart-1: 0.78 0.16 75;
+        --chart-2: 0.65 0.18 55;
+        --chart-3: 0.55 0.14 200;
+        --chart-4: 0.7 0.2 40;
+        --chart-5: 0.6 0.15 300;
+        --sidebar: 0.15 0.006 260;
+        --sidebar-foreground: 0.93 0.01 80;
+        --sidebar-primary: 0.78 0.16 75;
+        --sidebar-primary-foreground: 0.12 0.005 260;
+        --sidebar-accent: 0.22 0.008 260;
+        --sidebar-accent-foreground: 0.85 0.01 80;
+        --sidebar-border: 0.28 0.01 260;
+        --sidebar-ring: 0.78 0.16 75;
+    }
+
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Space Grotesk', sans-serif;
+    }
+}
+
+@layer utilities {
+    .glow-amber {
+        box-shadow: 0 0 20px oklch(0.78 0.16 75 / 0.3), 0 0 40px oklch(0.78 0.16 75 / 0.1);
+    }
+
+    .glow-amber-sm {
+        box-shadow: 0 0 10px oklch(0.78 0.16 75 / 0.25);
+    }
+
+    .card-gradient {
+        background: linear-gradient(135deg, oklch(0.17 0.006 260), oklch(0.19 0.008 260));
+        border: 1px solid oklch(0.28 0.01 260);
+    }
+
+    .card-gradient-hover:hover {
+        border-color: oklch(0.78 0.16 75 / 0.4);
+        box-shadow: 0 0 20px oklch(0.78 0.16 75 / 0.1);
+    }
+
+    .text-gradient-amber {
+        background: linear-gradient(135deg, oklch(0.85 0.18 75), oklch(0.7 0.2 55));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .upload-zone-active {
+        border-color: oklch(0.78 0.16 75);
+        background: oklch(0.78 0.16 75 / 0.05);
+        box-shadow: 0 0 30px oklch(0.78 0.16 75 / 0.15);
+    }
+
+    @keyframes pulse-amber {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    @keyframes spin-slow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+    }
+
+    .animate-pulse-amber {
+        animation: pulse-amber 2s ease-in-out infinite;
+    }
+
+    .animate-spin-slow {
+        animation: spin-slow 3s linear infinite;
+    }
+
+    .shimmer-bg {
+        background: linear-gradient(
+            90deg,
+            oklch(0.22 0.008 260) 25%,
+            oklch(0.28 0.01 260) 50%,
+            oklch(0.22 0.008 260) 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+    }
+}
